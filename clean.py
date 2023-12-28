@@ -16,6 +16,13 @@ data_set.drop(columns=col_drops, inplace=True)
 
 
 # Changing Index of DataFrame
-data_set = data_set.set_index('Identifier')
+data_set.set_index('Identifier', inplace=True)
 
-print(data_set.head(5))
+
+# Tidying up Fields in the Data
+
+extr_ = data_set['Date of Publication'].str.extract(r'^(\d{4})', expand=False)      # Regex
+
+data_set['Date of Publication'] = pd.to_numeric(extr_)
+
+data_set['Date of Publication'].isnull().sum() / len(data_set)
