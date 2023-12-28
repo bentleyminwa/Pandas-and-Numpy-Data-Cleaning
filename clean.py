@@ -9,17 +9,13 @@ data_set = Loader.load_data()
 
 
 # Dropping Columns
-col_drop = ['Edition Statement', 'Corporate Author', 'Corporate Contributors',
-            'Former owner', 'Engraver', 'Issuance type', 'Flickr URL', 'Shelfmarks']
+col_drops = ['Edition Statement', 'Corporate Author', 'Corporate Contributors',
+             'Engraver', 'Issuance type', 'Flickr URL', 'Shelfmarks']
 
-data_set.drop(columns=col_drop, inplace=True)
-
-
-# Changing Index of a DataFrame
-
-data_set = data_set.set_index('Identifier', inplace=True)
+data_set.drop(columns=col_drops, inplace=True)
 
 
-# Tidying up Fields in the Data
+# Changing Index of DataFrame
+data_set = data_set.set_index('Identifier')
 
-print(data_set)
+print(data_set.head(5))
