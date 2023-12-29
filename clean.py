@@ -26,3 +26,14 @@ extr_ = data_set['Date of Publication'].str.extract(r'^(\d{4})', expand=False)  
 data_set['Date of Publication'] = pd.to_numeric(extr_)
 
 data_set['Date of Publication'].isnull().sum() / len(data_set)
+
+
+# Combining str Methods with Numpy to Clean Columns
+pub = data_set['Place of Publication']
+london = pub.str.contains('London')
+oxford = pub.str.contains('Oxford')
+
+data_set['Place of Publication'] = np.where(london, 'London', np.where(oxford, 'Oxford', pub.str.replace('-', ' ')))
+
+
+# Cleaning Entire Dataset Using applymap() Function
