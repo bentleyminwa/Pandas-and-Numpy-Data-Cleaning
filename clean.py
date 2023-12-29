@@ -36,4 +36,17 @@ oxford = pub.str.contains('Oxford')
 data_set['Place of Publication'] = np.where(london, 'London', np.where(oxford, 'Oxford', pub.str.replace('-', ' ')))
 
 
-# Cleaning Entire Dataset Using applymap() Function
+# Cleaning Entire Dataset using applymap() Function
+towns_set = Loader.load_town_data()
+
+
+def get_citystate(item):
+    if ' (' in item:
+        return item[:item.find(' (')]
+    elif '[' in item:
+        return item[:item.find('[')]
+    else:
+        return item
+    
+
+towns_set = towns_set.applymap(get_citystate)
