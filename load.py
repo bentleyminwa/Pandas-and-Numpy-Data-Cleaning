@@ -31,3 +31,10 @@ class Loader():
         towns_df = pd.DataFrame(university_towns, columns = ['State', 'RegionName'])
 
         return towns_df
+
+
+    def load_olympics_data():
+        olympics_df = pd.read_csv('Data/olympics.csv', header=1)
+
+        return olympics_df
+    
