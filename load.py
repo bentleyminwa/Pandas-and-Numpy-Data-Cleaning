@@ -34,6 +34,7 @@ class Loader():
 
 
     def load_olympics_data():
+        # Loads the olympics.csv file
         olympics_df = pd.read_csv('Data/olympics.csv', header=1)
 
         return olympics_df
